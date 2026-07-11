@@ -1,0 +1,20 @@
+services:
+  database:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: wedding
+      POSTGRES_USER: wedding
+      POSTGRES_PASSWORD: wedding_dev_password
+    ports:
+      - "5433:5432"
+    volumes:
+      - wedding_db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U wedding -d wedding"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  wedding_db_data:
