@@ -1,0 +1,221 @@
+.main {
+  overflow: clip;
+}
+.hero {
+  display: grid;
+  gap: clamp(3rem, 7vw, 6rem);
+  justify-items: center;
+  padding: clamp(4rem, 9vw, 8rem) 0 clamp(5rem, 11vw, 9rem);
+  position: relative;
+  text-align: center;
+}
+.heroContent {
+  display: grid;
+  gap: clamp(1rem, 2vw, 1.5rem);
+  justify-items: center;
+  max-width: 62rem;
+  position: relative;
+  z-index: 1;
+}
+.scriptEyebrow {
+  color: var(--color-acorn);
+  font:
+    italic 400 clamp(1.25rem, 2.4vw, 1.75rem)/1.2 Georgia,
+    serif;
+  letter-spacing: 0.02em;
+  margin: 0;
+}
+.title {
+  font: 400 clamp(3.5rem, 9vw, 7rem)/0.94 var(--font-display);
+  letter-spacing: -0.04em;
+  margin: 0;
+}
+.dateLocationLine {
+  color: var(--color-acorn);
+  font-size: clamp(0.7rem, 1.5vw, 0.875rem);
+  font-weight: 600;
+  letter-spacing: 0.13em;
+  margin: 0;
+  text-transform: uppercase;
+}
+.configurationStatus {
+  color: var(--color-muted);
+  font-size: 0.6875rem;
+  margin: -0.5rem 0 0;
+}
+.imageFrame {
+  border: 1px solid var(--color-clay);
+  border-radius: var(--radius-md);
+  padding: 0.75rem;
+  width: min(100%, 62.5rem);
+}
+.imagePlaceholder {
+  align-items: center;
+  aspect-ratio: 16/8.8;
+  background: var(--color-image-placeholder);
+  border-radius: var(--radius-sm);
+  color: var(--color-muted);
+  display: flex;
+  font-size: 0.75rem;
+  justify-content: center;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.welcome {
+  background: var(--color-linen);
+  padding-block: clamp(4rem, 9vw, 7.5rem);
+}
+.welcome p {
+  font: 400 clamp(1.75rem, 4vw, 2.25rem)/1.4 var(--font-display);
+  margin: auto;
+  max-width: 46rem;
+  text-align: center;
+}
+.stationeryDetails {
+  align-items: stretch;
+  display: grid;
+  grid-template-columns: 1fr 1px 1fr;
+  padding-block: clamp(4rem, 9vw, 7rem);
+}
+.stationeryItem {
+  align-content: center;
+  display: grid;
+  justify-items: center;
+  min-height: 10rem;
+  padding-inline: clamp(1rem, 5vw, 5rem);
+  text-align: center;
+}
+.stationeryItem p {
+  font: 400 clamp(2rem, 4vw, 3rem)/1.1 var(--font-display);
+  margin: 0.75rem 0;
+}
+.detailLabel {
+  color: var(--color-acorn);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.detailStatus {
+  color: var(--color-muted);
+  font-size: 0.6875rem;
+}
+.detailDivider {
+  background: var(--color-clay);
+}
+.split {
+  align-items: center;
+  display: grid;
+  gap: clamp(2rem, 6vw, 5rem);
+  grid-template-columns: 1.08fr 0.92fr;
+  padding-block: clamp(4rem, 9vw, 7.5rem);
+}
+.storyImage {
+  aspect-ratio: 1.3;
+  background: var(--color-image-placeholder);
+  border-radius: var(--radius-md);
+}
+.body {
+  color: var(--color-muted);
+  line-height: 1.8;
+}
+.weekend {
+  background: var(--color-linen);
+  padding-block: clamp(4rem, 9vw, 6rem);
+}
+.cards {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 3rem;
+}
+.cardTitle {
+  font: 400 1.75rem/1.15 var(--font-display);
+  margin: 0.75rem 0 1rem;
+}
+.cardMeta {
+  color: var(--color-acorn);
+  font-size: 0.8125rem;
+}
+.ctaWrap {
+  padding-block: clamp(4rem, 9vw, 7.5rem);
+}
+.cta {
+  background: var(--color-timber);
+  border-radius: var(--radius-lg);
+  color: white;
+  margin: auto;
+  max-width: 50rem;
+  padding: clamp(2rem, 6vw, 4rem);
+  text-align: center;
+}
+.cta h2 {
+  font: 400 clamp(2.25rem, 5vw, 3rem)/1 var(--font-display);
+  margin: 1rem 0;
+}
+.cta p {
+  color: var(--color-clay);
+  margin: 0 auto 2rem;
+  max-width: 35rem;
+}
+.previews {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 1fr 1fr;
+  padding-bottom: clamp(4rem, 9vw, 7.5rem);
+}
+.preview h2 {
+  font: 400 2rem/1 var(--font-display);
+  margin-top: 0;
+}
+.anchor {
+  scroll-margin-top: 2rem;
+}
+@media (max-width: 760px) {
+  .hero {
+    gap: 3.5rem;
+    padding: 3.5rem 0 5rem;
+  }
+  .dateLocationLine {
+    line-height: 1.7;
+    max-width: 18rem;
+  }
+  .imagePlaceholder {
+    aspect-ratio: 4/5;
+  }
+  .split {
+    grid-template-columns: 1fr;
+  }
+  .storyImage {
+    aspect-ratio: 4/3;
+  }
+  .cards,
+  .previews {
+    grid-template-columns: 1fr;
+  }
+  .cards {
+    gap: 1rem;
+  }
+  .stationeryDetails {
+    gap: 2rem;
+    grid-template-columns: 1fr;
+    padding-block: 4rem;
+  }
+  .stationeryItem {
+    min-height: auto;
+  }
+  .detailDivider {
+    height: 1px;
+    justify-self: center;
+    width: 4rem;
+  }
+}
+@media (max-width: 390px) {
+  .title {
+    font-size: 3.35rem;
+  }
+  .dateLocationLine span {
+    display: block;
+    font-size: 0;
+  }
+}

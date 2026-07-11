@@ -1,6 +1,6 @@
 # Hannah & Isaac Wedding Website
 
-A private, self-hosted wedding portal built with Next.js, TypeScript, PostgreSQL, and Drizzle ORM. Sprint 0 provides the production-minded application foundation; invitation lookup, RSVP, gifting, and administration are intentionally placeholders for later sprints.
+A private, self-hosted wedding portal built with Next.js, TypeScript, PostgreSQL, and Drizzle ORM. Sprint 1 adds the responsive public site shell, invitation-code demonstration, and a static two-step household RSVP preview. Invitation lookup, RSVP persistence, gifting, and administration remain intentionally deferred.
 
 ## Requirements
 
@@ -52,7 +52,7 @@ npm run build         # Create a production build
 npm start             # Run the production build
 npm run lint          # Run ESLint
 npm run typecheck     # Run TypeScript without emitting files
-npm test              # Run the placeholder Node test suite
+npm test              # Run the lightweight Vitest component and utility suite
 npm run format        # Format tracked project files
 npm run format:check  # Check formatting without changing files
 npm run db:generate   # Generate SQL migrations from src/db/schema.ts

@@ -1,0 +1,40 @@
+.countdown {
+  display: grid;
+  gap: clamp(1rem, 5vw, 4rem);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: 0;
+  padding: clamp(3rem, 7vw, 5rem) 0;
+  text-align: center;
+}
+.value {
+  font: 400 clamp(2.25rem, 5vw, 3.5rem)/1 var(--font-display);
+}
+.label {
+  color: var(--color-muted);
+  display: block;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  margin-top: 0.5rem;
+  text-transform: uppercase;
+}
+.summary {
+  color: var(--color-botanical);
+  font-size: clamp(0.75rem, 1.5vw, 0.875rem);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  margin: 0;
+  text-transform: uppercase;
+}
+.summary span {
+  color: var(--color-timber);
+  font: 400 1.4em/1 var(--font-display);
+}
+@media (max-width: 420px) {
+  .countdown {
+    gap: 0.5rem;
+  }
+  .value {
+    font-size: 2rem;
+  }
+}

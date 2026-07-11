@@ -1,10 +1,14 @@
-import { PlaceholderPage } from "@/components/layout/PlaceholderPage";
+import { SiteHeader } from "@/components/layout/SiteHeader";
+import { RSVPPreview } from "@/components/rsvp/RSVPPreview";
+import styles from "@/components/rsvp/rsvp.module.css";
 export default function RsvpPage() {
   return (
-    <PlaceholderPage
-      eyebrow="RSVP"
-      title="Kindly reply"
-      description="Household responses will be available here soon."
-    />
+    <main className={styles.main}>
+      <SiteHeader />
+      <section className={`container ${styles.content}`}>
+        <h1 className={styles.title}>Your household RSVP</h1>
+        <RSVPPreview />
+      </section>
+    </main>
   );
 }
