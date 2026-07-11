@@ -1,6 +1,6 @@
 .footer {
-  border-top: 1px solid var(--color-clay);
-  padding-block: clamp(3rem, 7vw, 5rem);
+  background: var(--color-surface-soft);
+  padding-block: var(--section-small);
   text-align: center;
 }
 .monogram {

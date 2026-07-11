@@ -16,7 +16,7 @@
 }
 .primary {
   background: var(--color-timber);
-  color: var(--color-linen);
+  color: var(--color-surface-primary);
 }
 .secondary {
   background: transparent;
@@ -37,7 +37,7 @@
 }
 .input,
 .textarea {
-  background: white;
+  background: var(--color-surface-primary);
   border: 1px solid var(--color-clay);
   border-radius: var(--radius-sm);
   color: var(--color-timber);
@@ -59,10 +59,16 @@
   margin: 0;
 }
 .card {
-  background: var(--color-linen);
+  background: var(--color-surface-primary);
   border: 1px solid var(--color-clay);
   border-radius: var(--radius-md);
   padding: clamp(1.25rem, 3vw, 2.5rem);
+}
+.cardMinimal {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
 }
 .feedback {
   border: 1px solid;
@@ -139,7 +145,7 @@
 .option input:checked + span {
   background: var(--color-timber);
   border-color: var(--color-timber);
-  color: white;
+  color: var(--color-surface-primary);
   font-weight: 600;
 }
 .option input:focus-visible + span {

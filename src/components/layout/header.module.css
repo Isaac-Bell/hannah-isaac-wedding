@@ -46,13 +46,13 @@
   height: 1px;
 }
 .overlay {
-  background: rgb(58 53 50 / 40%);
+  background: var(--color-overlay);
   inset: 0;
   position: fixed;
   z-index: 20;
 }
 .drawer {
-  background: var(--color-linen);
+  background: var(--color-surface-primary);
   display: flex;
   flex-direction: column;
   inset: 0 0 0 auto;

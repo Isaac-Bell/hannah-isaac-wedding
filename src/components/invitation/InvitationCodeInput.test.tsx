@@ -17,4 +17,16 @@ describe("InvitationCodeInput", () => {
       expect.stringContaining("invitation-error"),
     );
   });
+
+  it("presents a safe demonstration response for a valid format", () => {
+    render(<InvitationCodeInput />);
+    fireEvent.change(screen.getByLabelText("Invitation code"), {
+      target: { value: "h6km9q2p" },
+    });
+    fireEvent.click(screen.getByRole("button", { name: "Continue" }));
+    expect(screen.getByRole("status")).toHaveTextContent(
+      "This code format is valid. Secure invitation lookup will be connected in the next sprint.",
+    );
+    expect(screen.queryByRole("alert")).not.toBeInTheDocument();
+  });
 });

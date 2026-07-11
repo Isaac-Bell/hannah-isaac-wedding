@@ -1,14 +1,19 @@
 :root {
+  --color-page: #ffffff;
+  --color-surface-primary: #ffffff;
+  --color-surface-soft: #faf9f7;
+  --color-surface-warm: #f6f3ee;
   --color-stone: #f2f0eb;
   --color-timber: #3a3532;
   --color-acorn: #8c7e6a;
-  --color-linen: #faf9f7;
-  --color-clay: #d9d4ce;
+  --color-linen: var(--color-surface-soft);
+  --color-clay: #e7e2dc;
   --color-error: #a67b6f;
   --color-success: #6b7a5c;
   --color-botanical: #5d634f;
   --color-muted: #6b655f;
-  --color-image-placeholder: #ded9d1;
+  --color-image-placeholder: #fbfaf7;
+  --color-overlay: rgb(58 53 50 / 40%);
   --font-display: var(--font-fraunces), Georgia, "Times New Roman", serif;
   --font-body: var(--font-epilogue), ui-sans-serif, system-ui, sans-serif;
   --space-1: 0.25rem;
@@ -19,22 +24,27 @@
   --space-8: 2rem;
   --space-12: 3rem;
   --space-16: 4rem;
+  --section-small: clamp(3.5rem, 7vw, 6rem);
+  --section-medium: clamp(5rem, 10vw, 9rem);
+  --section-large: clamp(6.5rem, 13vw, 12rem);
+  --section-hero: clamp(7rem, 16vw, 15rem);
   --radius-sm: 0.25rem;
   --radius-md: 0.5rem;
   --radius-lg: 0.75rem;
   --shadow-soft: 0 1.25rem 4rem rgb(58 53 50 / 8%);
-  --width-content: 80rem;
+  --width-content: 84rem;
   --width-reading: 42rem;
 }
 * {
   box-sizing: border-box;
 }
 html {
-  background: var(--color-stone);
+  background: var(--color-page);
   color: var(--color-timber);
   scroll-behavior: smooth;
 }
 body {
+  background: var(--color-page);
   margin: 0;
   font-family: var(--font-body);
   line-height: 1.6;

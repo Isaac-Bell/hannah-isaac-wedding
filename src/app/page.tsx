@@ -96,7 +96,11 @@ export default function HomePage() {
             <div className={styles.cards}>
               {["The Welcome", "The Ceremony", "The Farewell"].map(
                 (title, index) => (
-                  <InformationCard key={title}>
+                  <InformationCard
+                    className={styles.scheduleItem}
+                    key={title}
+                    variant="minimal"
+                  >
                     <span className="eyebrow">Event 0{index + 1}</span>
                     <h3 className={styles.cardTitle}>{title}</h3>
                     <p className={styles.body}>
@@ -126,7 +130,10 @@ export default function HomePage() {
           </div>
         </section>
         <section className={`container ${styles.previews}`}>
-          <InformationCard className={`${styles.preview} ${styles.anchor}`}>
+          <InformationCard
+            className={`${styles.preview} ${styles.anchor}`}
+            variant="minimal"
+          >
             <h2 id="travel">Travel</h2>
             <p className={styles.body}>
               Travel and accommodation guidance will be shared when arrangements
@@ -136,7 +143,10 @@ export default function HomePage() {
               Details coming soon
             </Button>
           </InformationCard>
-          <InformationCard className={`${styles.preview} ${styles.anchor}`}>
+          <InformationCard
+            className={`${styles.preview} ${styles.anchor}`}
+            variant="minimal"
+          >
             <h2 id="gifts">Gifts</h2>
             <p className={styles.body}>
               Your presence is the greatest gift. Optional gifting information
