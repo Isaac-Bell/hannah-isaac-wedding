@@ -8,12 +8,13 @@
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
-    "test": "node --test",
+    "test": "vitest run",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
-    "db:studio": "drizzle-kit studio"
+    "db:studio": "drizzle-kit studio",
+    "invite:create": "tsx scripts/create-invitation.ts"
   },
   "dependencies": {
     "drizzle-orm": "latest",
@@ -32,6 +33,8 @@
     "eslint": "latest",
     "eslint-config-next": "latest",
     "prettier": "latest",
-    "typescript": "latest"
+    "tsx": "^4.23.0",
+    "typescript": "latest",
+    "vitest": "^4.1.10"
   }
 }

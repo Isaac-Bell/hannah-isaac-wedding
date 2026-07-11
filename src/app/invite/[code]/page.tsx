@@ -1,10 +1,4 @@
-import { PlaceholderPage } from "@/components/layout/PlaceholderPage";
-export default function InvitationPage() {
-  return (
-    <PlaceholderPage
-      eyebrow="Your invitation"
-      title="Welcome"
-      description="Your household invitation will appear here once secure lookup is implemented."
-    />
-  );
+import { redirect } from "next/navigation";
+export default function LegacyInvitationPage() {
+  redirect("/invite");
 }

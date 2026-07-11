@@ -1,6 +1,6 @@
 # Hannah & Isaac Wedding Website
 
-A private, self-hosted wedding portal built with Next.js, TypeScript, PostgreSQL, and Drizzle ORM. Sprint 0 provides the production-minded application foundation; invitation lookup, RSVP, gifting, and administration are intentionally placeholders for later sprints.
+A private, self-hosted wedding portal built with Next.js, TypeScript, PostgreSQL, and Drizzle ORM. Invitation lookup now creates an opaque guest session protecting details, RSVP, travel, and optional gift information.
 
 ## Requirements
 
@@ -17,6 +17,7 @@ npm install
 cp .env.example .env.local
 docker compose up -d database
 npm run db:migrate
+npm run invite:create -- --party-name "Test Household" --guest "Guest One" --guest "Guest Two"
 npm run dev
 ```
 
@@ -34,13 +35,15 @@ To also remove its local data volume, explicitly run `docker compose down --volu
 
 `.env.example` documents local-safe placeholder values. Copy it to `.env.local` and replace secrets before using the features that require them. Never commit `.env.local` or production credentials.
 
-| Variable                 | Purpose                                                              |
-| ------------------------ | -------------------------------------------------------------------- |
-| `NEXT_PUBLIC_SITE_URL`   | Canonical application URL                                            |
-| `DATABASE_URL`           | PostgreSQL connection string                                         |
-| `INVITATION_CODE_PEPPER` | Reserved for future invitation-code hashing                          |
-| `ADMIN_AUTH_SECRET`      | Reserved for future separate admin authentication                    |
-| Payment variables        | Reserved placeholders only; no payment processing exists in Sprint 0 |
+| Variable                  | Purpose                                                                                                  |
+| ------------------------- | -------------------------------------------------------------------------------------------------------- |
+| `NEXT_PUBLIC_SITE_URL`    | Canonical application URL                                                                                |
+| `DATABASE_URL`            | PostgreSQL connection string                                                                             |
+| `INVITATION_CODE_PEPPER`  | Required keyed hashing secret for invitation codes, sessions, and privacy-preserving attempt identifiers |
+| `ADMIN_AUTH_SECRET`       | Reserved for future separate admin authentication                                                        |
+| `TRAVEL_AIRPORT_INFO_URL` | Optional HTTPS airport-information link                                                                  |
+| `GIFT_ZELLE_*`            | Optional server-only recipient display values                                                            |
+| `GIFT_PAYPAL_ME_URL`      | Optional HTTPS `paypal.me` external-payment URL                                                          |
 
 Public configuration is validated when read. Database configuration is validated only when a database operation is requested, so linting and static builds do not open a database connection.
 
@@ -52,13 +55,36 @@ npm run build         # Create a production build
 npm start             # Run the production build
 npm run lint          # Run ESLint
 npm run typecheck     # Run TypeScript without emitting files
-npm test              # Run the placeholder Node test suite
+npm test              # Run the isolated Vitest security and configuration suite
 npm run format        # Format tracked project files
 npm run format:check  # Check formatting without changing files
 npm run db:generate   # Generate SQL migrations from src/db/schema.ts
 npm run db:migrate    # Apply generated migrations
 npm run db:studio     # Open Drizzle Studio
+npm run invite:create -- --party-name "Test Household" --guest "Guest One"
 ```
+
+Generate a development secret with:
+
+```bash
+openssl rand -base64 48
+```
+
+Place it in `.env.local` as `INVITATION_CODE_PEPPER`. The invitation creation command refuses production use unless `--confirm-production` is supplied. It inserts the party and guests in one transaction, stores only a keyed hash, and prints the plaintext code once. Do not paste that code into logs or URLs.
+
+## Guest login and protected routes
+
+Start PostgreSQL, apply migrations, create a demo invitation, and visit `/invite`. A valid code creates a 30-day opaque session in an HttpOnly, SameSite=Lax cookie and redirects to `/details`; the code never appears in the URL or cookie. `/details`, `/rsvp`, `/travel`, and `/gifts` redirect unauthenticated visitors to `/invite`. “Forget this device” revokes the database session and deletes the cookie.
+
+Attempts are throttled using persistent PostgreSQL records keyed by privacy-preserving hashes. Public errors are deliberately generic for invalid, disabled, expired, and rate-limited invitations.
+
+## Travel and gifts
+
+General travel copy is maintained in `src/content/travel.ts` and includes a last-reviewed date. Recheck external guidance before launch. Keep venue addresses, booking codes, private phone numbers, and unconfirmed transport outside this module.
+
+Gift options are optional external personal-payment methods only. The app does not collect amounts, store bank/card details, run PayPal checkout, or record payment completion. Unconfigured providers are hidden. Never commit real recipient details; provide them only through server environment configuration.
+
+> Do not commit real invitation codes, private venue information, personal payment details, booking codes, or production secrets.
 
 After changing the schema, generate and inspect a migration before applying it:
 
@@ -86,7 +112,7 @@ The final image runs the Next.js standalone server as an unprivileged user. The 
 
 Application routes live in `src/app`, shared UI in `src/components`, database schema and client code in `src/db`, and server utilities in `src/lib`. Generated, reviewable SQL migrations live in `drizzle`. GitHub Actions runs install, lint, typecheck, tests, and build for pull requests and pushes to `main` or `develop`.
 
-All pages opt out of search indexing. Private routes are placeholders only and must not contain private wedding details until invitation and admin protections are implemented.
+All pages opt out of search indexing. Guest routes require a valid database-backed invitation session; the admin route remains a placeholder for a later sprint.
 
 ## Branch flow
 

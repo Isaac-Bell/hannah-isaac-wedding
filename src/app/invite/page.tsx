@@ -1,10 +1,17 @@
-import { PlaceholderPage } from "@/components/layout/PlaceholderPage";
+import { InvitationForm } from "@/components/invitation/InvitationForm";
+
 export default function InvitePage() {
   return (
-    <PlaceholderPage
-      eyebrow="Invitation"
-      title="You’re invited"
-      description="Invitation code entry is coming in the next sprint."
-    />
+    <main className="guest-entry page">
+      <div className="guest-panel">
+        <p className="eyebrow">Private guest portal</p>
+        <h1>Enter your invitation</h1>
+        <p className="lede">
+          Use the unique code from your invitation to view private wedding
+          details.
+        </p>
+        <InvitationForm />
+      </div>
+    </main>
   );
 }
