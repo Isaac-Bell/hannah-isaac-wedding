@@ -63,6 +63,7 @@ npm run db:generate   # Generate SQL migrations from src/db/schema.ts
 npm run db:migrate    # Apply generated migrations
 npm run db:studio     # Open Drizzle Studio
 npm run invite:create -- --environment development --party-name "Test Household" --guest "Guest One"
+npm run rsvp:reset -- --environment development --party-name "Test Household" --confirm-reset
 ```
 
 Generate a development secret with:
@@ -73,11 +74,17 @@ openssl rand -base64 48
 
 Place it in `.env.local` as `INVITATION_CODE_PEPPER`. The invitation creation command requires an explicit `--environment development|production` mode and refuses production use unless `--confirm-production` is supplied. It retries code-hash collisions, inserts the party and guests in one transaction, stores only a keyed hash, and prints the plaintext code once. Do not paste that code into logs or URLs.
 
+Drizzle and the development scripts load `.env.local` using Next.js environment loading, so manual shell exports are not required. The RSVP reset command requires an explicit development mode and confirmation, accepts one exact household name, refuses ambiguous matches, and only operates on a loopback PostgreSQL host.
+
 ## Guest login and protected routes
 
 Start PostgreSQL, apply migrations, create a demo invitation, and visit `/invite`. A valid code creates a 30-day opaque session in an HttpOnly, SameSite=Lax cookie and redirects to `/details`; the code never appears in the URL or cookie. `/details`, `/rsvp`, `/travel`, and `/gifts` redirect unauthenticated visitors to `/invite`. “Forget this device” revokes the database session and deletes the cookie.
 
 Attempts are throttled using persistent PostgreSQL records keyed by privacy-preserving hashes. Public errors are deliberately generic for invalid, disabled, expired, and rate-limited invitations.
+
+## Household RSVP
+
+The protected `/rsvp` route loads the named guests belonging to the authenticated invitation and saves a complete household response transactionally. Attendance is required for every guest, at least one household contact method is required, and event choices are checked against the server-side allow-list. Existing responses are prefilled and update through the same unique response rows. Concurrent submissions use a household advisory lock with last-write-wins behavior; the displayed timestamp identifies the final saved version.
 
 ## Travel and gifts
 

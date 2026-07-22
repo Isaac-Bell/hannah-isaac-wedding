@@ -1,3 +1,4 @@
+import { loadEnvConfig } from "@next/env";
 import postgres from "postgres";
 import { drizzle } from "drizzle-orm/postgres-js";
 import { guests, invitations } from "../src/db/schema";
@@ -6,6 +7,8 @@ import {
   deriveInvitationCodeHash,
   generateInvitationCode,
 } from "../src/lib/invitations/code";
+
+loadEnvConfig(process.cwd());
 
 function valuesFor(flag: string) {
   const values: string[] = [];
