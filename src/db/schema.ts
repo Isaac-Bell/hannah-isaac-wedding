@@ -120,10 +120,58 @@ export const giftPayments = pgTable(
   ],
 );
 
+export const invitationSessions = pgTable(
+  "invitation_sessions",
+  {
+    id: uuid("id").defaultRandom().primaryKey(),
+    invitationId: uuid("invitation_id")
+      .references(() => invitations.id, { onDelete: "cascade" })
+      .notNull(),
+    tokenHash: text("token_hash").notNull(),
+    expiresAt: timestamp("expires_at", { withTimezone: true }).notNull(),
+    lastSeenAt: timestamp("last_seen_at", { withTimezone: true })
+      .defaultNow()
+      .notNull(),
+    createdAt: timestamp("created_at", { withTimezone: true })
+      .defaultNow()
+      .notNull(),
+    revokedAt: timestamp("revoked_at", { withTimezone: true }),
+  },
+  (table) => [
+    uniqueIndex("invitation_sessions_token_hash_idx").on(table.tokenHash),
+    index("invitation_sessions_invitation_id_idx").on(table.invitationId),
+    index("invitation_sessions_expires_at_idx").on(table.expiresAt),
+  ],
+);
+
+export const invitationAttempts = pgTable(
+  "invitation_attempts",
+  {
+    id: uuid("id").defaultRandom().primaryKey(),
+    requesterHash: text("requester_hash").notNull(),
+    codeFingerprint: text("code_fingerprint").notNull(),
+    succeeded: boolean("succeeded").default(false).notNull(),
+    attemptedAt: timestamp("attempted_at", { withTimezone: true })
+      .defaultNow()
+      .notNull(),
+  },
+  (table) => [
+    index("invitation_attempts_requester_time_idx").on(
+      table.requesterHash,
+      table.attemptedAt,
+    ),
+    index("invitation_attempts_code_time_idx").on(
+      table.codeFingerprint,
+      table.attemptedAt,
+    ),
+  ],
+);
+
 export const invitationRelations = relations(invitations, ({ many, one }) => ({
   guests: many(guests),
   response: one(partyResponses),
   giftPayments: many(giftPayments),
+  sessions: many(invitationSessions),
 }));
 export const guestRelations = relations(guests, ({ one }) => ({
   invitation: one(invitations, {

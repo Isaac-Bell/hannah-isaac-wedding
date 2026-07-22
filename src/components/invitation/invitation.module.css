@@ -32,6 +32,14 @@
   font: 400 clamp(2.5rem, 6vw, 4rem)/1 var(--font-display);
   margin: 0;
 }
+.eyebrow {
+  color: var(--color-acorn);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  margin: 0 0 -1rem;
+  text-transform: uppercase;
+}
 .intro {
   color: var(--color-muted);
   margin: -1rem 0 0;

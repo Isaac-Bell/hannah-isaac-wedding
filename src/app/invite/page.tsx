@@ -1,7 +1,8 @@
 import Link from "next/link";
-import { InvitationCodeInput } from "@/components/invitation/InvitationCodeInput";
-import { siteConfig } from "@/lib/config/site";
+import { InvitationForm } from "@/components/invitation/InvitationForm";
 import styles from "@/components/invitation/invitation.module.css";
+import { siteConfig } from "@/lib/config/site";
+
 export default function InvitePage() {
   return (
     <main className={styles.shell}>
@@ -15,12 +16,13 @@ export default function InvitePage() {
         <span />
       </header>
       <section className={`container ${styles.panel}`}>
+        <p className={styles.eyebrow}>Private guest portal</p>
         <h1 className={styles.title}>RSVP</h1>
         <p className={styles.intro}>
           Welcome. Enter the unique invitation code printed on your physical
-          invitation to begin.
+          invitation to view your private guest details.
         </p>
-        <InvitationCodeInput />
+        <InvitationForm />
         <Link className={styles.home} href="/">
           Back to homepage
         </Link>

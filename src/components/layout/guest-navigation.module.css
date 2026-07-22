@@ -1,0 +1,74 @@
+.header {
+  background: var(--color-surface-primary);
+  border-bottom: 1px solid var(--color-clay);
+}
+.inner {
+  align-items: center;
+  display: flex;
+  gap: var(--space-6);
+  min-height: 5.5rem;
+}
+.monogram {
+  font: 400 1.5rem/1 var(--font-display);
+  text-decoration: none;
+}
+.party {
+  flex: 1;
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+.nav {
+  display: flex;
+  gap: var(--space-4);
+}
+.nav a {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+.mobile {
+  display: none;
+  position: relative;
+}
+.mobile summary {
+  cursor: pointer;
+  min-height: 44px;
+  padding: 0.65rem;
+}
+.mobile .nav {
+  background: var(--color-surface-primary);
+  border: 1px solid var(--color-clay);
+  display: grid;
+  padding: var(--space-3);
+  position: absolute;
+  right: 0;
+  z-index: 5;
+}
+.forget {
+  background: transparent;
+  border: 0;
+  color: var(--color-botanical);
+  cursor: pointer;
+  min-height: 44px;
+  padding: 0.5rem;
+  text-decoration: underline;
+}
+@media (max-width: 760px) {
+  .desktop {
+    display: none;
+  }
+  .mobile {
+    display: block;
+  }
+  .party {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .inner {
+    gap: var(--space-2);
+  }
+  .forget {
+    font-size: 0.7rem;
+  }
+}

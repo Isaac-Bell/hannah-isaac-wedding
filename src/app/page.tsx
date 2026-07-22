@@ -139,8 +139,8 @@ export default function HomePage() {
               Travel and accommodation guidance will be shared when arrangements
               are confirmed.
             </p>
-            <Button href="#travel" variant="secondary">
-              Details coming soon
+            <Button href="/travel" variant="secondary">
+              View guest travel guide
             </Button>
           </InformationCard>
           <InformationCard
@@ -152,8 +152,8 @@ export default function HomePage() {
               Your presence is the greatest gift. Optional gifting information
               will be available privately later.
             </p>
-            <Button href="#gifts" variant="secondary">
-              Information coming soon
+            <Button href="/gifts" variant="secondary">
+              View gift information
             </Button>
           </InformationCard>
         </section>
