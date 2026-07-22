@@ -1,0 +1,49 @@
+.page {
+  min-height: calc(100svh - 5.5rem);
+  padding-block: var(--section-small) var(--section-medium);
+}
+.page > h1 {
+  font: 400 clamp(2.75rem, 7vw, 5rem)/0.98 var(--font-display);
+  letter-spacing: -0.03em;
+  margin: var(--space-3) 0 var(--space-6);
+}
+.page section {
+  margin-top: var(--section-small);
+}
+.page h2 {
+  font: 400 clamp(1.8rem, 4vw, 2.75rem)/1.1 var(--font-display);
+}
+.page h3 {
+  font: 400 1.35rem/1.25 var(--font-display);
+}
+.lede {
+  color: var(--color-muted);
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  max-width: var(--width-reading);
+}
+.quiet {
+  color: var(--color-muted);
+  font-size: 0.8125rem;
+}
+.card {
+  background: var(--color-surface-warm);
+  border: 1px solid var(--color-clay);
+  border-radius: var(--radius-md);
+  padding: clamp(1.25rem, 4vw, 2.5rem);
+}
+.grid {
+  display: grid;
+  gap: var(--space-6);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+  margin-top: var(--space-8);
+}
+.list {
+  display: grid;
+  gap: var(--space-4);
+  max-width: var(--width-reading);
+  padding-left: 1.25rem;
+}
+.link {
+  display: inline-block;
+  margin-block: var(--space-3);
+}

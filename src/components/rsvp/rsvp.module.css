@@ -1,0 +1,81 @@
+.main {
+  background: var(--color-page);
+  min-height: 100svh;
+  padding-bottom: 5rem;
+}
+.content {
+  display: grid;
+  gap: 2rem;
+  max-width: 48rem;
+  padding-top: clamp(2rem, 6vw, 4rem);
+}
+.title {
+  font: 400 clamp(2.5rem, 6vw, 4rem)/1 var(--font-display);
+  margin: 0;
+}
+.form {
+  display: grid;
+  gap: 2rem;
+}
+.guestGrid {
+  display: grid;
+  gap: 1rem;
+}
+.guestCard {
+  background: var(--color-surface-warm);
+  display: grid;
+  gap: 1.25rem;
+}
+.event {
+  border-top: 1px solid var(--color-clay);
+  padding-top: 1.25rem;
+}
+.event label {
+  align-items: flex-start;
+  display: flex;
+  gap: 0.75rem;
+}
+.event input {
+  height: 1.25rem;
+  margin-top: 0.15rem;
+  width: 1.25rem;
+}
+.event strong {
+  display: block;
+}
+.event span {
+  color: var(--color-muted);
+  display: block;
+  font-size: 0.8125rem;
+  margin-top: 0.25rem;
+}
+.fields {
+  display: grid;
+  gap: 1.5rem;
+}
+.twoColumns {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 1fr 1fr;
+}
+.actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+}
+.note {
+  color: var(--color-muted);
+  font-size: 0.8125rem;
+  text-align: center;
+}
+@media (max-width: 600px) {
+  .twoColumns {
+    grid-template-columns: 1fr;
+  }
+  .actions {
+    flex-direction: column-reverse;
+  }
+  .actions > * {
+    width: 100%;
+  }
+}
