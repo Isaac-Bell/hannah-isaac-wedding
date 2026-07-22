@@ -14,9 +14,11 @@
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
     "db:studio": "drizzle-kit studio",
-    "invite:create": "tsx scripts/create-invitation.ts"
+    "invite:create": "tsx scripts/create-invitation.ts",
+    "rsvp:reset": "tsx scripts/reset-development-rsvp.ts"
   },
   "dependencies": {
+    "@next/env": "16.2.10",
     "drizzle-orm": "0.45.2",
     "next": "16.2.10",
     "postgres": "3.4.9",

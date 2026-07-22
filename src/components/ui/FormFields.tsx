@@ -39,18 +39,24 @@ export function TextArea({
   label,
   error,
   helper,
+  errorMessageId,
   id,
   className = "",
   ...props
-}: Base & TextareaHTMLAttributes<HTMLTextAreaElement>) {
+}: Base & {
+  errorMessageId?: string;
+} & TextareaHTMLAttributes<HTMLTextAreaElement>) {
   const helperId = helper && id ? `${id}-help` : undefined;
+  const describedBy =
+    [helperId, error ? errorMessageId : undefined].filter(Boolean).join(" ") ||
+    undefined;
   return (
     <div className={styles.field}>
       <label className={styles.label} htmlFor={id}>
         {label}
       </label>
       <textarea
-        aria-describedby={helperId}
+        aria-describedby={describedBy}
         aria-invalid={error || undefined}
         className={`${styles.textarea} ${error ? styles.invalid : ""} ${className}`}
         id={id}
